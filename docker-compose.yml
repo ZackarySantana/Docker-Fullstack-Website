@@ -1,0 +1,38 @@
+version: "3.2"
+services:
+  server:
+    image: lidtop/webapp_server:latest
+    build: ./server
+    env_file:
+      - database/.env.dev
+    environment:
+      PORT: "8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - 'database'
+
+  frontend: 
+    image: lidtop/webapp_frontend:latest
+    build: ./frontend
+    environment:
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "server"
+
+  database:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    env_file:
+      - database/.env.dev
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - persistant-data:/var/lib/mysql
+    cap_add:
+      - SYS_NICE
+
+volumes:
+  persistant-data:

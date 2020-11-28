@@ -1,0 +1,16 @@
+{
+  "name": "dockertest",
+  "version": "1.0.0",
+  "description": "This is my first docker test",
+  "main": "src/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
