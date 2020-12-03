@@ -1,7 +1,6 @@
 version: "3.2"
 services:
   server:
-    image: lidtop/webapp_server:latest
     build: ./server
     env_file:
       - database/.env.dev
@@ -13,7 +12,6 @@ services:
       - 'database'
 
   frontend: 
-    image: lidtop/webapp_frontend:latest
     build: ./frontend
     environment:
       PORT: "3000"
